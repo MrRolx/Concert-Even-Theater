@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Concert Booking Form</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Project Style.css">
+
+    <style>
+      .navbar {
+        padding: 20px;
+        transition: 1s;
+    }
+    
+    .navbar.scroll {
+        background: #141414;
+    }
+    
+    .navbar-brand {
+        font-weight: bold;
+        font-style: italic;
+        padding-left: 150px;
+        font-size: 50px;
+        color: #fff;
+        text-transform: capitalize;
+    }
+    
+    .navbar-nav {
+        padding-left: 300px;
+    
+    }
+    
+    .nav-link {
+        font-weight: bold;
+        font-style: italic;
+        color: #fff !important;
+        margin-left: 5px;
+        transition: 0.6s;
+        border-radius: 20px;
+        text-transform: capitalize;
+    }
+    
+    .nav-link:hover {
+        transform: translateY(-20px);
+        background: #dc3445;
+    }
+    
+    .logo {
+        margin-left: 60px;
+        margin-top: 15px;
+    
+    }
+    
+    .logo img {
+        height: 7vh;
+    }
+    
+    .logo h3 {
+        color: rgb(18, 241, 241);
+        font-size: 25px;
+        margin-top: -35px;
+        margin-left: 50px;
+    }
+
+
+      body {
+        background-image: url(bn1.jpg);
+        background-size: cover;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: FFFFFF, 00FFFFFF;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 85px;
+      }
+
+      
+
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input,
+      select {
+        width: 96%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0069d9;
+      }
+      /* CSS styles */
+
+      /* ... existing CSS styles ... */
+
+      #invoice {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #222;
+        border-radius: 10px;
+        text-align: left;
+      }
+
+      #invoice h2 {
+        margin-top: 0;
+      }
+
+      #invoice table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      #invoice th,
+      #invoice td {
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+
+      #invoice th {
+        background-color: grey;
+      }
+
+      #invoice tr:last-child td {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm fixed-top">
+      <a href="#" class="navbar-brand">
+          <div class="logo">
+              <img src="images/logo/e.png" alt="">
+              <h3>A&A Entertainment</h3>
+          </div>
+      </a>
+
+      <div>
+          <ul class="navbar-nav">
+              <li class="nav-item"><a href="Project.html" class="nav-link">home</a></li>
+              <li class="nav-item"><a href="C index.html" class="nav-link">concert</a></li>
+              <li class="nav-item"><a href="E index.html" class="nav-link">event</a></li>
+              <li class="nav-item"><a href="TP index.html" class="nav-link">theater performances</a></li>
+              <li class="nav-item"><a href="book.html" class="nav-link">ticket</a></li>
+          </ul>
+      </div>
+  </nav>
+
+    <div class="container">
+      <h1 className="heading1">Ticket Reservation</h1>
+      <form action="submit_booking.php" method="POST"  id="formReset">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" pattern="^[a-zA-Z]+$" placeholder="Please Write Your Name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="abc@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            pattern="[0-9]{10}" placeholder="Write Your Phone Number "
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="ticket-type">Ticket Type:</label>
+          <select id="ticket-type" name="ticket-type" required>
+            <option value="VIP">VIP</option>
+            <option value="Standard">Standard</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ticket-count">Tickets Count:</label>
+          <input
+            type="number"
+            id="ticket-count"
+            name="ticket-count"
+            min="1"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="booking-type">Booking Type:</label>
+          <select id="booking-type" name="booking-type" required>
+            <option value="concert">Concert</option>
+            <option value="event">Event</option>
+            <option value="theater">Theater</option>
+
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="payment-method">Payment Method:</label>
+          <select id="payment-method" name="payment-method" required>
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="card-number">Card Number:</label>
+          <input
+            type="text"
+            id="card-number"
+            name="card-number"
+            pattern="\b\d{13,16}\b"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="expiry-date">Expiry Date:</label>
+          <input type="date" id="expiry-date" name="expiry-date" required />
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv" pattern="^[0-9]{3, 4}$" required />
+        </div>
+        <button type="button"  onclick="return calculatePrice()">Create Invoice</button>
+
+        <div id="invoice">
+          <table>
+            <thead>
+              <tr>
+                <th>Ticket Type</th>
+                <th>Ticket Count</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody id="invoice-details"></tbody>
+          </table>
+          <div>
+            <button onclick="downloadInvoice()">Download Invoice</button>
+          </div>
+        </div>
+        <div>
+          <button type="button" onclick="formSubmit(event)" style="background-color: green">
+            Book Now
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      // JavaScript function to calculate ticket price and generate invoice
+      function calculatePrice() {
+        var ticketType = document.getElementById("ticket-type").value;
+        var ticketCount = document.getElementById("ticket-count").value;
+
+        var unitPrice = 0;
+        if (ticketType === "VIP") {
+          unitPrice = 100;
+        } else if (ticketType === "Standard") {
+          unitPrice = 50;
+        }
+
+        var totalPrice = unitPrice * ticketCount;
+
+        // Set invoice values
+        document.getElementById("invoice-details").innerHTML = `
+          <tr>
+            <td>${ticketType}</td>
+            <td>${ticketCount}</td>
+            <td>$${unitPrice}</td>
+            <td>$${totalPrice}</td>
+          </tr>
+        `;
+        // Show the invoice
+        document.getElementById("invoice").style.display = "block";
+
+        return false; // Prevent form submission
+      }
+
+      function formSubmit(event){
+        var tableContent = document.getElementById("formReset").submit();
+        event.preventDefault(); // Prevent form submission
+
+// Process the form data and perform necessary actions
+
+// Display SweetAlert success message
+Swal.fire({
+  icon: 'success',
+  title: 'Booking Confirmed successfully!',
+  showConfirmButton: false,
+  timer: 3000
+});
+var ticketType = document.getElementById("formReset").reset();
+
+      }
+      function downloadInvoice() {
+        var tableContent = document.getElementById("invoice").innerHTML;
+        var invoiceHtml = `
+          <html>
+            <head>
+              <style>
+                /* Styles for the invoice table */
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  margin-top: 10px;
+                  background-color:Yellow
+                }
+                th,
+                td {
+                  padding: 5px;
+                  border: 1px solid #ccc;
+                }
+                th {
+                  background-color: grey;
+                }
+                tr:last-child td {
+                  font-weight: bold;
+                }
+              </style>
+            </head>
+            <body style="background-image: url("bn1.jpg");background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
+              <h2 style="color:black;">Invoice</h2>
+              <table>
+                ${tableContent}
+              </table>
+            </body>
+          </html>
+        `;
+
+        // Convert the invoice HTML to PDF
+        var element = document.createElement("a");
+        element.setAttribute(
+          "href",
+          "data:text/html;charset=utf-8," + encodeURIComponent(invoiceHtml)
+        );
+        element.setAttribute("download", "invoice.html");
+        element.style.display = "none";
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+
+        // Hide the "Download Invoice" button
+        // document.getElementById('invoice-download-button').style.display = 'none';
+      }
+
+      function handleSubmit(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Process the form data and perform necessary actions
+
+    // Display SweetAlert success message
+    Swal.fire({
+      icon: 'success',
+      title: 'Booking Confirmed successfully!',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    var ticketType = document.getElementById("formReset").reset();
+  
+  }
+    </script>
+  </body>
+</html>
